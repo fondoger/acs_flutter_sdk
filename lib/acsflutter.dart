@@ -21,4 +21,12 @@ class Acsflutter {
   Future<String?> stopCall() {
     return AcsflutterPlatform.instance.stopCall();
   }
+
+  Future<String?> startOneToOneVideoCall(String calleeId) {
+    return AcsflutterPlatform.instance.startOneToOneVideoCall(calleeId);
+  }
+
+  Future<String?> showLocalVideoPrewview(bool show) {
+    return AcsflutterPlatform.instance.showLocalVideoPreview(show);
+  }
 }

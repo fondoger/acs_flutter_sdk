@@ -1,9 +1,14 @@
 package com.microsoft.acsflutter.acsflutter;
 
 import android.app.Activity;
+import android.content.Context;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 import io.flutter.Log;
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
@@ -17,7 +22,11 @@ import io.flutter.plugin.common.MethodChannel.Result;
 /** AcsflutterPlugin */
 public class AcsflutterPlugin implements FlutterPlugin, MethodCallHandler, ActivityAware {
 
+  @Nullable
+  private ViewManager viewManager;
+
   private Implementations implementations;
+
   @Nullable
   private ActivityPluginBinding pluginBinding;
 
@@ -30,9 +39,19 @@ public class AcsflutterPlugin implements FlutterPlugin, MethodCallHandler, Activ
 
   @Override
   public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
-    this.implementations = new Implementations(flutterPluginBinding.getApplicationContext());
+    Context context = flutterPluginBinding.getApplicationContext();
 
+    this.viewManager = new ViewManager(context);
 
+    // Init implementations
+    this.implementations = new Implementations(context, viewManager);
+
+    // Register Native View
+    flutterPluginBinding
+            .getPlatformViewRegistry()
+            .registerViewFactory("nativeVideoStreamView", new NativeVideoStreamViewFactory(viewManager));
+
+    // Method Channel
     channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "acsflutter");
     channel.setMethodCallHandler(this);
   }
@@ -57,6 +76,16 @@ public class AcsflutterPlugin implements FlutterPlugin, MethodCallHandler, Activ
       implementations.stopCall();
       result.success("");
     } else if (call.method.equals("createAgent")) {
+      result.success("");
+    } else if (call.method.equals("start1to1VideoCall")) {
+      Log.d("tag", "startOneToOneVideoCall() called");
+      String calleeId = call.argument("calleeId");
+      implementations.startOneToOneVideoCall(calleeId);
+      result.success("");
+    } else if (call.method.equals("showLocalVideoPreview")){
+      Boolean show = call.argument("show");
+      Log.d("tag", "showLocalVideoPreview() called");
+      implementations.showLocalVideoPreview(show);
       result.success("");
     } else {
       result.notImplemented();

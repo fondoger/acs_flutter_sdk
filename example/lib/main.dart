@@ -3,6 +3,7 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 import 'package:acsflutter/acsflutter.dart';
+import 'package:acsflutter/views/local_video_preview_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -54,34 +55,79 @@ class _MyAppState extends State<MyApp> {
           appBar: AppBar(
             title: const Text('Plugin example app'),
           ),
-          body: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('Running on: $_platformVersion\n'),
-                TextFormField(
-                  controller: _textController,
-                  decoration: const InputDecoration(
-                    border: UnderlineInputBorder(),
-                    labelText: 'Callee ID',
-                  ),
-                ),
-                TextButton(
-                  onPressed: () async {
-                    await _acsflutterPlugin.getAllPermissions();
+          body: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('Running on: $_platformVersion\n'),
+                  Card(
+                    child: Column(children: [
+                      TextFormField(
+                        controller: _textController,
+                        decoration: const InputDecoration(
+                          border: UnderlineInputBorder(),
+                          labelText: 'Callee ID',
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () async {
+                          await _acsflutterPlugin.getAllPermissions();
 
-                    await _acsflutterPlugin.startCall(_textController.text);
-                  },
-                  child: const Text("Call"),
-                ),
-                TextButton(
-                  onPressed: () async {
-                    await _acsflutterPlugin.stopCall();
-                  },
-                  child: const Text("Stop"),
-                ),
-              ],
+                          await _acsflutterPlugin.startCall(_textController.text);
+                        },
+                        child: const Text("Call"),
+                      ),
+                      TextButton(
+                        onPressed: () async {
+                          await _acsflutterPlugin.stopCall();
+                        },
+                        child: const Text("Stop"),
+                      ),
+                    ]),
+                  ),
+                  Card(
+                    child: Column(
+                      children: [
+                        Text("Video Call"),
+                        Row(
+                          children: [
+                            TextButton(
+                              onPressed: () async {
+                                await _acsflutterPlugin.getAllPermissions();
+
+                                await _acsflutterPlugin.startOneToOneVideoCall(_textController.text);
+                              },
+                              child: Text("Call"),
+                            ),
+                            TextButton(
+                              onPressed: () async {
+                                await _acsflutterPlugin.showLocalVideoPrewview(true);
+                              },
+                              child: Text("Show Video"),
+                            ),
+                            TextButton(
+                              onPressed: () async {
+                                await _acsflutterPlugin.showLocalVideoPrewview(false);
+                              },
+                              child: Text("Hide Video"),
+                            ),
+                            TextButton(
+                              onPressed: () {},
+                              child: Text("Hang Up"),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 300,
+                          child: LocalVideoPreviewView(),
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
           )),
     );

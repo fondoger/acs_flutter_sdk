@@ -40,4 +40,20 @@ class MethodChannelAcsflutter extends AcsflutterPlatform {
     final version = await methodChannel.invokeMethod<String>('stopCall');
     return version;
   }
+
+  @override
+  Future<String?> startOneToOneVideoCall(String calleeId) async {
+    final version = await methodChannel.invokeMethod<String>('startOneToOneVideoCall', {
+      "calleeId": calleeId,
+    });
+    return version;
+  }
+
+  @override
+  Future<String?> showLocalVideoPreview(bool show) async {
+    final version = await methodChannel.invokeMethod<String>('showLocalVideoPreview', {
+      "show": show,
+    });
+    return version;
+  }
 }
