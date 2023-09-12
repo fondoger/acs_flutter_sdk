@@ -15,7 +15,7 @@ class MockAcsflutterPlatform with MockPlatformInterfaceMixin implements Acsflutt
   Future<String?> createAgent() => Future.value('42');
 
   @override
-  Future<String?> startCall() => Future.value('42');
+  Future<String?> startCall(String calleeId) => Future.value('42');
 }
 
 void main() {

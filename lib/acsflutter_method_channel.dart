@@ -28,8 +28,10 @@ class MethodChannelAcsflutter extends AcsflutterPlatform {
   }
 
   @override
-  Future<String?> startCall() async {
-    final version = await methodChannel.invokeMethod<String>('startCall');
+  Future<String?> startCall(String calleeId) async {
+    final version = await methodChannel.invokeMethod<String>('startCall', {
+      "calleeId": calleeId,
+    });
     return version;
   }
 }

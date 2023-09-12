@@ -47,6 +47,11 @@ public class AcsflutterPlugin implements FlutterPlugin, MethodCallHandler, Activ
 
       implementations.getAllPermissions();
       result.success("");
+    } else if (call.method.equals("startCall")) {
+      Log.d("tag", "startCall() called");
+      String calleeId = call.argument("calleeId");
+      implementations.startCall(calleeId);
+      result.success("");
     } else if (call.method.equals("createAgent")) {
       result.success("");
     } else {

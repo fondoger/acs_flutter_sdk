@@ -66,10 +66,10 @@ class _MyAppState extends State<MyApp> {
                 ),
               ),
               TextButton(
-                  onPressed: () {
-                    _acsflutterPlugin.getAllPermissions();
+                  onPressed: () async {
+                    await _acsflutterPlugin.getAllPermissions();
 
-                    _acsflutterPlugin.startCall();
+                    await _acsflutterPlugin.startCall(_textController.text);
                   },
                   child: const Text("Call")),
             ],
