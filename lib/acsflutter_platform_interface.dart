@@ -38,4 +38,8 @@ abstract class AcsflutterPlatform extends PlatformInterface {
   Future<String?> startCall(String calleeId) {
     throw UnimplementedError('startCall() has not been implemented.');
   }
+
+  Future<String?> stopCall() {
+    throw UnimplementedError('stopCall() has not been implemented.');
+  }
 }

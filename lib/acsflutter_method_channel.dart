@@ -34,4 +34,10 @@ class MethodChannelAcsflutter extends AcsflutterPlatform {
     });
     return version;
   }
+
+  @override
+  Future<String?> stopCall() async {
+    final version = await methodChannel.invokeMethod<String>('stopCall');
+    return version;
+  }
 }

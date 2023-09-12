@@ -17,4 +17,8 @@ class Acsflutter {
   Future<String?> startCall(String calleeId) {
     return AcsflutterPlatform.instance.startCall(calleeId);
   }
+
+  Future<String?> stopCall() {
+    return AcsflutterPlatform.instance.stopCall();
+  }
 }

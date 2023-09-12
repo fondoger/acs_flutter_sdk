@@ -11,8 +11,10 @@ import android.content.Context;
 import android.media.AudioManager;
 import android.widget.Toast;
 
+import com.azure.android.communication.calling.Call;
 import com.azure.android.communication.calling.CallAgent;
 import com.azure.android.communication.calling.CallClient;
+import com.azure.android.communication.calling.HangUpOptions;
 import com.azure.android.communication.calling.StartCallOptions;
 import com.azure.android.communication.common.CommunicationTokenCredential;
 import com.azure.android.communication.common.CommunicationUserIdentifier;
@@ -25,6 +27,8 @@ public class Implementations {
     private final Context context;
     @Nullable
     private Activity activity;
+    @Nullable
+    private Call call;
 
 
     public Implementations(@NonNull Context context) {
@@ -60,12 +64,21 @@ public class Implementations {
 
             // start call
             StartCallOptions options = new StartCallOptions();
-            callAgent.startCall(context,
+            call = callAgent.startCall(context,
                     new CommunicationUserIdentifier[] {new CommunicationUserIdentifier(calleeId)},
                     options);
         } catch (Exception ex) {
             
             Toast.makeText(context, "Failed to create start call.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void stopCall() {
+        if (this.call != null) {
+            this.call.hangUp(new HangUpOptions()).exceptionally(ex -> {
+                Toast.makeText(context, "Failed to stop call", Toast.LENGTH_SHORT).show();
+                return null;
+            });
         }
     }
 }

@@ -16,6 +16,9 @@ class MockAcsflutterPlatform with MockPlatformInterfaceMixin implements Acsflutt
 
   @override
   Future<String?> startCall(String calleeId) => Future.value('42');
+
+  @override
+  Future<String?> stopCall() => Future.value('42');
 }
 
 void main() {

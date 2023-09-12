@@ -54,25 +54,35 @@ class _MyAppState extends State<MyApp> {
           appBar: AppBar(
             title: const Text('Plugin example app'),
           ),
-          body: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('Running on: $_platformVersion\n'),
-              TextFormField(
-                controller: _textController,
-                decoration: const InputDecoration(
-                  border: UnderlineInputBorder(),
-                  labelText: 'Callee ID',
+          body: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('Running on: $_platformVersion\n'),
+                TextFormField(
+                  controller: _textController,
+                  decoration: const InputDecoration(
+                    border: UnderlineInputBorder(),
+                    labelText: 'Callee ID',
+                  ),
                 ),
-              ),
-              TextButton(
+                TextButton(
                   onPressed: () async {
                     await _acsflutterPlugin.getAllPermissions();
 
                     await _acsflutterPlugin.startCall(_textController.text);
                   },
-                  child: const Text("Call")),
-            ],
+                  child: const Text("Call"),
+                ),
+                TextButton(
+                  onPressed: () async {
+                    await _acsflutterPlugin.stopCall();
+                  },
+                  child: const Text("Stop"),
+                ),
+              ],
+            ),
           )),
     );
   }

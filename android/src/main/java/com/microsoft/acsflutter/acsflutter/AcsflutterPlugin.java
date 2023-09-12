@@ -52,6 +52,10 @@ public class AcsflutterPlugin implements FlutterPlugin, MethodCallHandler, Activ
       String calleeId = call.argument("calleeId");
       implementations.startCall(calleeId);
       result.success("");
+    } else if (call.method.equals("stopCall")) {
+      Log.d("tag", "stopCall() called");
+      implementations.stopCall();
+      result.success("");
     } else if (call.method.equals("createAgent")) {
       result.success("");
     } else {
