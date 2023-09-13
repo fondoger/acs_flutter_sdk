@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:acsflutter/acsflutter.dart';
-import 'package:acsflutter/acsflutter_platform_interface.dart';
-import 'package:acsflutter/acsflutter_method_channel.dart';
+import 'package:azure_communication_services_rtc/acsflutter.dart';
+import 'package:azure_communication_services_rtc/acsflutter_platform_interface.dart';
+import 'package:azure_communication_services_rtc/acsflutter_method_channel.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 class MockAcsflutterPlatform with MockPlatformInterfaceMixin implements AcsflutterPlatform {

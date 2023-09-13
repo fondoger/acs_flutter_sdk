@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:acsflutter/acsflutter_method_channel.dart';
+import 'package:azure_communication_services_rtc/acsflutter_method_channel.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();

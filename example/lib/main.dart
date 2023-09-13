@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:flutter/services.dart';
-import 'package:acsflutter/acsflutter.dart';
-import 'package:acsflutter/views/local_video_preview_view.dart';
+import 'package:azure_communication_services_rtc/acsflutter.dart';
+import 'package:azure_communication_services_rtc/views/local_video_preview_view.dart';
 
 void main() {
   runApp(const MyApp());
