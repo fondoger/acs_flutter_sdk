@@ -23,6 +23,10 @@ abstract class AcsflutterPlatform extends PlatformInterface {
     _instance = instance;
   }
 
+  Future<String?> initialize(String userToken) {
+    throw UnimplementedError('initialize() has not been implemented.');
+  }
+
   Future<String?> getPlatformVersion() {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
@@ -47,7 +51,7 @@ abstract class AcsflutterPlatform extends PlatformInterface {
     throw UnimplementedError('startOneToOneVideoCall() has not been implemented.');
   }
 
-  Future<String?> showLocalVideoPreview(bool show) {
-    throw UnimplementedError('showLocalVideoPreview() has not been implemented.');
+  Future<String?> turnOnLocalVideo(bool show) {
+    throw UnimplementedError('turnOnLocalVideo() has not been implemented.');
   }
 }

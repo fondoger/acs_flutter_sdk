@@ -1,6 +1,10 @@
 import 'acsflutter_platform_interface.dart';
 
 class Acsflutter {
+  Future<String?> initialize(String userToken) {
+    return AcsflutterPlatform.instance.initialize(userToken);
+  }
+
   Future<String?> getPlatformVersion() {
     return AcsflutterPlatform.instance.getPlatformVersion();
   }
@@ -26,7 +30,7 @@ class Acsflutter {
     return AcsflutterPlatform.instance.startOneToOneVideoCall(calleeId);
   }
 
-  Future<String?> showLocalVideoPrewview(bool show) {
-    return AcsflutterPlatform.instance.showLocalVideoPreview(show);
+  Future<String?> turnOnLocalVideo(bool show) {
+    return AcsflutterPlatform.instance.turnOnLocalVideo(show);
   }
 }

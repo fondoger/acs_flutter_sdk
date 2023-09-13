@@ -6,6 +6,9 @@ import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 class MockAcsflutterPlatform with MockPlatformInterfaceMixin implements AcsflutterPlatform {
   @override
+  Future<String?> initialize(String userToken) => Future.value('42');
+
+  @override
   Future<String?> getPlatformVersion() => Future.value('42');
 
   @override
@@ -24,7 +27,7 @@ class MockAcsflutterPlatform with MockPlatformInterfaceMixin implements Acsflutt
   Future<String?> startOneToOneVideoCall(String calleeId) => Future.value('42');
 
   @override
-  Future<String?> showLocalVideoPreview(bool show) => Future.value('42');
+  Future<String?> turnOnLocalVideo(bool show) => Future.value('42');
 }
 
 void main() {

@@ -2,13 +2,9 @@ package com.microsoft.acsflutter.acsflutter;
 
 import android.app.Activity;
 import android.content.Context;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
-import java.util.HashMap;
-import java.util.concurrent.ConcurrentHashMap;
 
 import io.flutter.Log;
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
@@ -58,12 +54,16 @@ public class AcsflutterPlugin implements FlutterPlugin, MethodCallHandler, Activ
 
   @Override
   public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
-    if (call.method.equals("getPlatformVersion")) {
+    if (call.method.equals("initialize")) {
+      String userToken =   call.argument("userToken");
+      Log.d("tag", "initialize() called");
+      implementations.initialize(userToken);
+      result.success("");
+    } else if (call.method.equals("getPlatformVersion")) {
       result.success("Android " + android.os.Build.VERSION.RELEASE);
     } else if (call.method.equals("getAllPermissions")) {
       // print log
       Log.d("tag", "getAllPermissions() called!");
-
       implementations.getAllPermissions();
       result.success("");
     } else if (call.method.equals("startCall")) {
@@ -77,15 +77,19 @@ public class AcsflutterPlugin implements FlutterPlugin, MethodCallHandler, Activ
       result.success("");
     } else if (call.method.equals("createAgent")) {
       result.success("");
-    } else if (call.method.equals("start1to1VideoCall")) {
+    } else if (call.method.equals("startOneToOneVideoCall")) {
       Log.d("tag", "startOneToOneVideoCall() called");
       String calleeId = call.argument("calleeId");
       implementations.startOneToOneVideoCall(calleeId);
       result.success("");
-    } else if (call.method.equals("showLocalVideoPreview")){
+    } else if (call.method.equals("turnOnLocalVideo")) {
       Boolean show = call.argument("show");
-      Log.d("tag", "showLocalVideoPreview() called");
-      implementations.showLocalVideoPreview(show);
+      Log.d("tag", "turnOnLocalVideo() called");
+      implementations.turnOnLocalVideo(show);
+      result.success("");
+    } else if (call.method.equals("switchLocalVideoSource")) {
+      Log.d("tag", "switchLocalVideoSource() called");
+      implementations.switchLocalVideoSource();
       result.success("");
     } else {
       result.notImplemented();

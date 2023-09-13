@@ -10,6 +10,14 @@ class MethodChannelAcsflutter extends AcsflutterPlatform {
   final methodChannel = const MethodChannel('acsflutter');
 
   @override
+  Future<String?> initialize(String userToken) async {
+    final version = await methodChannel.invokeMethod<String>('initialize', {
+      "userToken": userToken,
+    });
+    return version;
+  }
+
+  @override
   Future<String?> getPlatformVersion() async {
     final version = await methodChannel.invokeMethod<String>('getPlatformVersion');
     return version;
@@ -50,8 +58,8 @@ class MethodChannelAcsflutter extends AcsflutterPlatform {
   }
 
   @override
-  Future<String?> showLocalVideoPreview(bool show) async {
-    final version = await methodChannel.invokeMethod<String>('showLocalVideoPreview', {
+  Future<String?> turnOnLocalVideo(bool show) async {
+    final version = await methodChannel.invokeMethod<String>('turnOnLocalVideo', {
       "show": show,
     });
     return version;
