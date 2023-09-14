@@ -1,6 +1,6 @@
-# Azure Communication Service Flutter SDK
+# Azure Communication Services Flutter SDK
 
-Flutter plugin for [Azure Communication Service](https://learn.microsoft.com/en-us/azure/communication-services/overview#platforms-and-sdk-libraries), which enables you to build real-time video/audio call applications(WebRTC).
+Flutter plugin for [Azure Communication Services](https://learn.microsoft.com/en-us/azure/communication-services/overview#platforms-and-sdk-libraries), which enables you to build real-time video/audio call applications(WebRTC).
 
 This plugin is a community-maintained project, and not maintained by Azure ACS team. If you have any issues, please file an issue instead of contacting support.
 
@@ -9,19 +9,19 @@ This package is currently work-in-progress and should not be used for production
 ## Example
 
 Check out our comprehensive [example](./example) provided with this plugin.
-<img src="screenshots/demo.png" alt="drawing" style="max-width:300px;"/>
+<img src="screenshots/demo.png" alt="drawing" width=50% height=50%/>
 
 ## Supported Platforms
 
 - Android
-- iOS (not yet)
+- iOS (coming soon)
 
 ## Getting Started
 
 **Install Package**
 
 ```
-flutter pub get 
+flutter pub add azure_communication_services_rtc
 ```
 
 #### Permissions
