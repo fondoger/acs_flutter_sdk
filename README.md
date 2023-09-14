@@ -1,22 +1,32 @@
-# acsflutter
+# Azure Communication Service Flutter SDK
 
-A new Flutter plugin project.
+Flutter plugin for [Azure Communication Service](https://learn.microsoft.com/en-us/azure/communication-services/overview#platforms-and-sdk-libraries), which enables you to build real-time video/audio call applications(WebRTC).
+
+This plugin is a community-maintained project, and not maintained by Azure ACS team. If you have any issues, please file an issue instead of contacting support.
+
+This package is currently work-in-progress and should not be used for production apps. We can't garantee that the current API implementation will stay the same between versions until we have reached v1.0.0.
+
+## Example
+
+Check out our comprehensive [example](./example) provided with this plugin.
+<img src="screenshots/demo.png" alt="drawing" style="max-width:300px;"/>
+
+## Supported Platforms
+
+- Android
+- iOS (not yet)
 
 ## Getting Started
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+**Install Package**
 
-For help getting started with Flutter development, view the
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```
+flutter pub get 
+```
 
+#### Permissions
 
-## Android Setup
-
-Add permissions:
+Open the `AndroidManifest.xml` file in your `android/app/src/main` directory and add the following device permissions:
 
 ```AndroidManifest.xml
 <manifest 
@@ -38,4 +48,53 @@ Add permissions:
         <uses-library android:name="org.apache.http.legacy" android:required="false"/>  <!-- Important(3) -->
     </application>
 </manifest>
+```
+
+### Usage
+
+**Audio Call**
+
+```dart
+// 1. Create instance
+final acsFlutter = Acsflutter();
+
+// 2. Request permissions
+await acsFlutter.getAllPermissions();
+
+// 3. Initialize 
+await acsFlutter.initialize(/**UserToken**/);
+
+// 4. Start Call
+await acsFlutter.startCall(/**CalleeUserID**/);
+
+// 5. Stop Call
+await acsFlutter.stopCall();
+```
+
+**Video Call**
+
+```dart
+// 1. Create instance
+final acsFlutter = Acsflutter();
+
+// 2. Request permissions
+await acsFlutter.getAllPermissions();
+
+// 3. Initialize 
+await acsFlutter.initialize(/**UserToken**/);
+
+// 4. Start Call
+await acsFlutter.startOneToOneVideoCall(/**CalleeUserID**/);
+
+// 5. Widget for self video view
+const SizedBox(
+    height: 150,
+    child: LocalVideoPreviewView(viewKey: "localVideoView"),
+),
+
+// 6. Widget for remove video view
+const SizedBox(
+    height: 150,
+    child: LocalVideoPreviewView(viewKey: "remoteVideoView"),
+),
 ```
