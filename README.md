@@ -1,5 +1,8 @@
 # Azure Communication Services Flutter SDK
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Star](https://img.shields.io/amo/stars/dustman.svg?style=flat)]()
+
 Flutter plugin for [Azure Communication Services](https://learn.microsoft.com/en-us/azure/communication-services/overview#platforms-and-sdk-libraries), which enables you to build real-time video/audio call applications(WebRTC).
 
 This plugin is a community-maintained project, and not maintained by Azure ACS team. If you have any issues, please file an issue instead of contacting support.
